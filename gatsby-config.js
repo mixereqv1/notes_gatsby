@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -15,12 +17,19 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `icons`,
+        path: `${__dirname}/src/assets/icons`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
         fonts: [
           {
             family: `Montserrat`,
-            variants: [`400`, `700`],
+            variants: [`400`, `700`, `900`],
           },
         ],
       },
@@ -38,6 +47,12 @@ module.exports = {
           appId: '1:196912555231:web:5c1704ceaf4ec0efb5b56a',
           measurementId: 'G-0574651511',
         },
+      },
+    },
+    {
+      resolve: `gatsby-source-datocms`,
+      options: {
+        apiToken: process.env.API_DATO_CMS,
       },
     },
     `gatsby-transformer-sharp`,
